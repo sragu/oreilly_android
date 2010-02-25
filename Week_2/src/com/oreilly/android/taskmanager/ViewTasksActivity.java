@@ -23,8 +23,9 @@ public class ViewTasksActivity extends ListActivity {
         
         setUpViews();
         app = (TaskManagerApplication)getApplication();
-        adapter = new TaskListAdapter(this, app.getCurrentTasks());
-        setListAdapter(adapter);
+        adapter = new TaskListAdapter(this,R.layout.task_list_item ,android.R.id.text1,  app.getCurrentTasks());
+        adapter.setNotifyOnChange(true);
+        setListAdapter(adapter);      
     }
 	
 	@Override

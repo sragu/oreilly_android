@@ -1,38 +1,30 @@
 package com.oreilly.android.taskmanager.adapters;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 
 import com.oreilly.android.taskmanager.R;
 import com.oreilly.android.taskmanager.tasks.Task;
 import com.oreilly.android.taskmanager.views.TaskListItem;
 
-public class TaskListAdapter extends BaseAdapter {
+public class TaskListAdapter extends ArrayAdapter<Task> {
 	
-	private ArrayList<Task> tasks;
+	private List<Task> tasks;
 	private Context context;
 
-	public TaskListAdapter(Context context, ArrayList<Task> tasks) {
+	public TaskListAdapter(Context context, int resource,
+			int textViewResourceId, List<Task> tasks) {
+		super(context, resource, textViewResourceId, tasks);
 		this.tasks = tasks;
 		this.context = context;
 	}
 
-	public int getCount() {
-		return tasks.size();
-	}
-
-	public Task getItem(int position) {
-		return (null == tasks) ? null : tasks.get(position);
-	}
-
-	public long getItemId(int position) {
-		return position;
-	}
-
+	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		TaskListItem tli;
 		if (null == convertView) {
